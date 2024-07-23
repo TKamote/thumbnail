@@ -1,0 +1,11 @@
+S/N	Parameter	Equipment Type	Regulatory Authority	Legal Applicability / Regulatory
+1	Trade Effluent Discharge	Waste Water Treatment Plant	Public Utilities Board (PUB)	Sewage and Drainage ACT 2001 / reg  4
+2	Annual Cleaning and Disinfection of Water Storage Tanks	Domestic Water Tank	Public Utilities Board (PUB)	Singapore Standard CP 48 - Code of Practice for Water Services
+3	Electrical Installation License	Electrical Switchboards	Energy Market Authority (EMA)	Energy Market Authority
+4	Lifting Platform # 1	Vehicle Lifting Platform	Ministry of Manpower (MOM)	WSH (GP) Regulations / Section 21
+5	Pressure Vessel	Air Compressor	Ministry of Manpower (MOM)	WSH (GP) Regulations / Section 31
+6	Lifting Hoist	Aircon Servicing Platform	Ministry of Manpower (MOM)	WSH (GP) Regulations / Section 19
+8	Hazardous Substance Permit	Waste Water Treatment Plant	National Environment Agency (NEA)	Permit to Store and Use Hazardous Substances
+9	Passenger Lift # 1	Passenger Lift	Building and Construction Authority(BCA)	Building Maintenance and Strata Management(Lift&Escalator)Reg 10
+10	Petroleum & Flammable Materials Storage License	Underground Diesel Tank & Genset Room(1000L Day Tank)	Singapore Civil Defence Force (SCDF)	SCDF / Fire Act 1993(Part VI)
+11	Fire Certificate	Loyang Bus Depot	Singapore Civil Defence Force (SCDF)	The Fire Safety Act (Section 20)
