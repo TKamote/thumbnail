@@ -3,14 +3,16 @@ import { useLocalSearchParams } from "expo-router";
 import { useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import InspectionItem from "../../components/InspectionItem";
-import { InspectionItem as IInspectionItem } from '../../types';  // Import the type interface
+import ExportButton from "../../components/ExportButton";
+import { InspectionItem as IInspectionItem } from '../../types';
 
 const { width } = Dimensions.get('window');
 const columnWidth = (width - 30) / 2;
 
 export default function InspectionList() {
   const params = useLocalSearchParams();
-  const [inspections, setInspections] = useState<IInspectionItem[]>([]);  // Use the imported type
+  const [inspections, setInspections] = useState<IInspectionItem[]>([]);
+
 
   const placeholderInspections: IInspectionItem[] = [  // Use the imported type
     {
@@ -74,9 +76,14 @@ export default function InspectionList() {
     }
   };
 
+  
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.pageTitle}>Inspection List</Text>
+      <View style={styles.header}>
+        <Text style={styles.pageTitle}>Inspection List</Text>
+        <ExportButton inspections={inspections} />
+      </View>
+      
       <View style={styles.grid}>
         {inspections.length > 0
           ? inspections.map(item => (
@@ -105,12 +112,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#000000",
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 15,
+    marginVertical: 15,
+  },
   pageTitle: {
     fontSize: 24,
     fontWeight: "bold",
     color: "#FFFFFF",
-    textAlign: "center",
-    marginVertical: 15,
   },
   grid: {
     flexDirection: 'row',
