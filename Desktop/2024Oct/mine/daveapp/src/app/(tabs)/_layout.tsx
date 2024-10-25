@@ -1,5 +1,4 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { StyleSheet, Text, View } from "react-native";
 import { Tabs } from "expo-router";
 
 export default function Layout() {
@@ -18,7 +17,7 @@ export default function Layout() {
       <Tabs.Screen
         name="inspection"
         options={{
-          headerTitle: "Inspection",
+          headerTitle: "Inspection List",
           title: "Inspection",
           tabBarIcon: ({ color }) => (
             <FontAwesome name="list" size={24} color={color} />
@@ -28,12 +27,3 @@ export default function Layout() {
     </Tabs>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
