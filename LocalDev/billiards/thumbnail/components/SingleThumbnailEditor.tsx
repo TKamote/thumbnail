@@ -20,7 +20,11 @@ interface InitialContent {
     width?: number;
   }>;
   logoUrl?: string;
+  logoUrls?: string[];
   logoBorder?: boolean;
+  backgroundColor?: string;
+  logoSizeMultiplier?: number;
+  logoTop?: number;
 }
 
 interface SingleThumbnailEditorProps {
@@ -61,10 +65,11 @@ export default function SingleThumbnailEditor({
     if (!canvasRef.current) return;
 
     // Initialize Fabric.js canvas at full resolution
+    const bgColor = initialContent?.backgroundColor || "#FFFFFF";
     const canvas = new Canvas(canvasRef.current, {
       width: THUMBNAIL_WIDTH,
       height: THUMBNAIL_HEIGHT,
-      backgroundColor: "#FFFFFF",
+      backgroundColor: bgColor,
     });
 
     fabricCanvasRef.current = canvas;
@@ -100,14 +105,87 @@ export default function SingleThumbnailEditor({
           });
         }
 
-        // Add logo if provided - position it first, then texts will be below
-        if (initialContent.logoUrl) {
+        // Add logo(s) if provided - position it first, then texts will be below
+        if (initialContent.logoUrls && initialContent.logoUrls.length > 0) {
+          // Handle multiple logos side by side
+          const logoSpacing = 30;
+          const baseLogoWidth = 150;
+          let loadedLogos = 0;
+          const totalLogos = initialContent.logoUrls.length;
+          const logoImages: Array<{ img: Image; width: number }> = [];
+
+          // Load all logos first
+          initialContent.logoUrls.forEach((logoUrl, index) => {
+            Image.fromURL(logoUrl)
+              .then((img: Image) => {
+                if (!fabricCanvasRef.current) return;
+
+                // Make APA logo 25% bigger, Barako logo 5% smaller
+                const isAPALogo = logoUrl.includes("APA.png");
+                const isBarakoLogo = logoUrl.includes("barako.png");
+                let maxLogoWidth = baseLogoWidth;
+                if (isAPALogo) {
+                  maxLogoWidth = baseLogoWidth * 1.25; // 25% bigger
+                } else if (isBarakoLogo) {
+                  maxLogoWidth = baseLogoWidth * 0.95; // 5% smaller
+                }
+
+                // Scale logo to reasonable size
+                const scale = Math.min(
+                  maxLogoWidth / (img.width || 1),
+                  maxLogoWidth / (img.height || 1)
+                );
+                img.scale(scale);
+
+                const scaledWidth = (img.width || 0) * scale;
+                logoImages[index] = { img, width: scaledWidth };
+
+                // Add border if specified
+                if (initialContent.logoBorder) {
+                  img.set({
+                    stroke: "#000000",
+                    strokeWidth: 2,
+                  });
+                }
+
+                fabricCanvasRef.current.add(img);
+                loadedLogos++;
+
+                // Once all logos are loaded, position them side by side
+                if (loadedLogos === totalLogos) {
+                  // Calculate total width and positions
+                  const totalWidth =
+                    logoImages.reduce((sum, logo) => sum + logo.width, 0) +
+                    (totalLogos - 1) * logoSpacing;
+                  let currentX = (THUMBNAIL_WIDTH - totalWidth) / 2;
+
+                  logoImages.forEach((logoData) => {
+                    logoData.img.set({
+                      left: currentX + logoData.width / 2,
+                      top: 100,
+                      originX: "center",
+                      originY: "top",
+                    });
+                    currentX += logoData.width + logoSpacing;
+                  });
+
+                  fabricCanvasRef.current.renderAll();
+                }
+              })
+              .catch((error) => {
+                console.error("Failed to load logo:", error);
+              });
+          });
+        } else if (initialContent.logoUrl) {
+          // Handle single logo
           Image.fromURL(initialContent.logoUrl)
             .then((img: Image) => {
               if (!fabricCanvasRef.current) return;
 
-              // Scale logo to reasonable size (max 200px width)
-              const maxLogoWidth = 200;
+              // Scale logo to reasonable size (max 200px width, with optional multiplier)
+              const baseLogoWidth = 200;
+              const multiplier = initialContent.logoSizeMultiplier || 1;
+              const maxLogoWidth = baseLogoWidth * multiplier;
               const scale = Math.min(
                 maxLogoWidth / (img.width || 1),
                 maxLogoWidth / (img.height || 1)
@@ -115,9 +193,24 @@ export default function SingleThumbnailEditor({
               img.scale(scale);
 
               // Position logo at top center, relative to canvas
+              // If logoTop is specified, use it; otherwise calculate based on text position
+              let logoTop = 100;
+              if (initialContent.logoTop !== undefined) {
+                logoTop = initialContent.logoTop;
+              } else if (
+                initialContent.texts &&
+                initialContent.texts.length > 0
+              ) {
+                // Calculate logo position to leave 30px gap before first text
+                const firstTextTop =
+                  initialContent.texts[0].top || THUMBNAIL_HEIGHT / 2;
+                const scaledHeight = (img.height || 0) * scale;
+                logoTop = firstTextTop - scaledHeight - 30;
+              }
+
               img.set({
                 left: THUMBNAIL_WIDTH / 2,
-                top: 100,
+                top: logoTop,
                 originX: "center",
                 originY: "top",
               });

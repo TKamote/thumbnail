@@ -66,7 +66,7 @@ export default function TabbedThumbnailEditor() {
                   top: THUMBNAIL_HEIGHT / 2 + 80,
                 },
                 {
-                  content: "7th November 2025 | 8:00PM",
+                  content: "14th November 2025 | 8:00PM",
                   fontSize: 48,
                   fontFamily: "Arial",
                   color: "#FFFFFF",
@@ -74,6 +74,9 @@ export default function TabbedThumbnailEditor() {
                 },
               ],
               logoUrl: "/barako.png",
+              logoSizeMultiplier: 1.3,
+              logoTop: 30,
+              backgroundColor: "#FFFFE0",
             };
           } else if (tab.id === 2) {
             // Thumbnail 2: Billiards in Punggol
@@ -101,11 +104,11 @@ export default function TabbedThumbnailEditor() {
               logoUrl: "/barako.png",
             };
           } else if (tab.id === 3) {
-            // Thumbnail 3: Billiards with Friends @ PB
+            // Thumbnail 3: Sunday WTA @ Punggol Billiards
             initialContent = {
               texts: [
                 {
-                  content: "Billiards with Friends @ PB",
+                  content: "Sunday WTA @ Punggol Billiards",
                   fontSize: 100,
                   fontFamily: "Arial",
                   color: "#000000",
@@ -116,7 +119,7 @@ export default function TabbedThumbnailEditor() {
                   top: THUMBNAIL_HEIGHT / 2 + 80,
                 },
                 {
-                  content: "8th November 2025 | 6:00PM",
+                  content: "9th November 2025 | 7:00PM",
                   fontSize: 48,
                   fontFamily: "Arial",
                   color: "#000000",
@@ -124,7 +127,34 @@ export default function TabbedThumbnailEditor() {
                 },
               ],
               logoUrl: "/barako.png",
-              logoBorder: true,
+              logoTop: 30,
+              logoSizeMultiplier: 1.3,
+            };
+          } else if (tab.id === 4) {
+            // Thumbnail 4: APA Monday League @ D' Skunks Lounge
+            initialContent = {
+              texts: [
+                {
+                  content: "APA Monday League @ D' Skunks Lounge",
+                  fontSize: 100,
+                  fontFamily: "Arial",
+                  color: "#FFFFFF",
+                  fontWeight: "bold",
+                  stroke: "#000000",
+                  strokeWidth: 4,
+                  width: 994,
+                  top: THUMBNAIL_HEIGHT / 2 + 80,
+                },
+                {
+                  content: "10th November 2025",
+                  fontSize: 48,
+                  fontFamily: "Arial",
+                  color: "#FFFFFF",
+                  top: THUMBNAIL_HEIGHT / 2 + 230,
+                },
+              ],
+              logoUrls: ["/barako.png", "/APA.png"],
+              backgroundColor: "#0066CC",
             };
           }
 
