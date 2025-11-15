@@ -156,6 +156,52 @@ export default function TabbedThumbnailEditor() {
               logoUrls: ["/barako.png", "/APA.png"],
               backgroundColor: "#0066CC",
             };
+          } else if (tab.id === 5) {
+            // Thumbnail 5: Barako Tournament at Snooker Zone
+            const today = new Date();
+            const day = today.getDate();
+            const monthNames = [
+              "January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"
+            ];
+            const month = monthNames[today.getMonth()];
+            const year = today.getFullYear();
+            
+            // Format date with ordinal suffix (1st, 2nd, 3rd, 4th, etc.)
+            const getOrdinalSuffix = (n: number) => {
+              const s = ["th", "st", "nd", "rd"];
+              const v = n % 100;
+              return n + (s[(v - 20) % 10] || s[v] || s[0]);
+            };
+            
+            const formattedDate = `${getOrdinalSuffix(day)} ${month} ${year}`;
+            
+            initialContent = {
+              texts: [
+                {
+                  content: "Barako Tournament at Snooker Zone",
+                  fontSize: 100,
+                  fontFamily: "Arial",
+                  color: "#FFFFFF",
+                  fontWeight: "bold",
+                  stroke: "#000000",
+                  strokeWidth: 4,
+                  width: 994,
+                  top: THUMBNAIL_HEIGHT / 2 + 80,
+                },
+                {
+                  content: formattedDate,
+                  fontSize: 48,
+                  fontFamily: "Arial",
+                  color: "#FFFFFF",
+                  top: THUMBNAIL_HEIGHT / 2 + 230,
+                },
+              ],
+              logoUrl: "/barako.png",
+              logoSizeMultiplier: 1.3,
+              logoTop: 30,
+              backgroundColor: "#E6E6FA", // Light purple/lavender
+            };
           }
 
           return (
