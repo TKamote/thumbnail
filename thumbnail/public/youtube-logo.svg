@@ -1,0 +1,11 @@
+<svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- YouTube logo with text -->
+  <g>
+    <!-- Red rounded rectangle background -->
+    <rect x="0" y="0" width="240" height="80" rx="8" fill="#FF0000"/>
+    <!-- White play triangle -->
+    <path d="M 20 20 L 20 60 L 50 40 Z" fill="#FFFFFF"/>
+    <!-- YouTube text -->
+    <text x="70" y="50" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#FFFFFF">YouTube</text>
+  </g>
+</svg>

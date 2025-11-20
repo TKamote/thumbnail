@@ -1,0 +1,18 @@
+<svg width="1280" height="720" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Dark purple base -->
+    <pattern id="subtlePattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <!-- Background -->
+      <rect width="60" height="60" fill="#2d1b4e"/>
+      <!-- Enhanced diagonal lines - lighter and more visible -->
+      <path d="M 0 0 L 60 60 M 30 0 L 60 30 M 0 30 L 30 60" stroke="#5a4a7e" stroke-width="1" opacity="0.6"/>
+      <!-- Enhanced dots pattern - lighter and more visible -->
+      <circle cx="15" cy="15" r="1.5" fill="#6a5a8e" opacity="0.5"/>
+      <circle cx="45" cy="45" r="1.5" fill="#6a5a8e" opacity="0.5"/>
+      <circle cx="15" cy="45" r="1.5" fill="#6a5a8e" opacity="0.5"/>
+      <circle cx="45" cy="15" r="1.5" fill="#6a5a8e" opacity="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="720" fill="url(#subtlePattern)"/>
+</svg>
+
