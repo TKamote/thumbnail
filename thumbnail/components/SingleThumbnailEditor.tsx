@@ -14,6 +14,10 @@ interface InitialContent {
     fontFamily?: string;
     color?: string;
     top?: number;
+    left?: number;
+    angle?: number;
+    textAlign?: "left" | "center" | "right" | "justify";
+    originX?: "left" | "center" | "right";
     fontWeight?: string;
     stroke?: string;
     strokeWidth?: number;
@@ -145,7 +149,7 @@ export default function SingleThumbnailEditor({
         if (initialContent.texts) {
           initialContent.texts.forEach((textConfig) => {
             const textObject = new Textbox(textConfig.content, {
-              left: THUMBNAIL_WIDTH / 2 - 20, // Shift left by 20px
+              left: textConfig.left ?? THUMBNAIL_WIDTH / 2 - 20,
               top: textConfig.top || THUMBNAIL_HEIGHT / 2,
               fontSize: textConfig.fontSize || 60,
               fontFamily: textConfig.fontFamily || "Arial",
@@ -153,10 +157,11 @@ export default function SingleThumbnailEditor({
               fontWeight: textConfig.fontWeight || "bold",
               stroke: textConfig.stroke || "#000000",
               strokeWidth: textConfig.strokeWidth ?? 3,
-              textAlign: "center",
-              originX: "center",
+              textAlign: textConfig.textAlign || "center",
+              originX: textConfig.originX || "center",
               originY: "center",
               width: textConfig.width || THUMBNAIL_WIDTH * 0.8,
+              angle: textConfig.angle || 0,
               charSpacing: 0, // Remove letter spacing
               editable: true,
             });

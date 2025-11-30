@@ -13,14 +13,14 @@ interface Tab {
 
 const tabs: Tab[] = [
   { id: 1, name: "Thumbnail 1" },
-  { id: 2, name: "Thumbnail 2" },
-  { id: 3, name: "Thumbnail 3" },
   { id: 4, name: "Thumbnail 4" },
   { id: 5, name: "Thumbnail 5" },
   { id: 6, name: "Thumbnail 6" },
   { id: 7, name: "Thumbnail 7" },
   { id: 8, name: "Subscribe 1" },
   { id: 9, name: "Follow" },
+  { id: 10, name: "Friendly Double Match" },
+  { id: 11, name: "Ring Game" },
 ];
 
 export default function TabbedThumbnailEditor() {
@@ -70,69 +70,22 @@ export default function TabbedThumbnailEditor() {
                   top: THUMBNAIL_HEIGHT / 2 + 80,
                 },
                 {
-                  content: "21st November 2025 | 7:45PM",
-                  fontSize: 48,
+                  content: "28 November 2025 | 7:45PM",
+                  fontSize: 40,
                   fontFamily: "Arial",
                   color: "#FFFFFF",
-                  top: THUMBNAIL_HEIGHT / 2 + 230,
+                  top: THUMBNAIL_HEIGHT / 2 - 20,
+                  left: 50,
+                  angle: -30,
+                  textAlign: "left",
+                  originX: "left",
+                  width: 400,
                 },
               ],
               logoUrl: "/barako.png",
               logoSizeMultiplier: 1.3,
               logoTop: 30,
               backgroundColor: "#FFFFE0",
-            };
-          } else if (tab.id === 2) {
-            // Thumbnail 2: Billiards in Punggol
-            initialContent = {
-              texts: [
-                {
-                  content: "Billiards in Punggol",
-                  fontSize: 100,
-                  fontFamily: "Arial",
-                  color: "#000000",
-                  fontWeight: "bold",
-                  stroke: "#FFFFFF",
-                  strokeWidth: 4,
-                  width: 994,
-                  top: THUMBNAIL_HEIGHT / 2 + 80,
-                },
-                {
-                  content: "7th November 2025 | 8:00PM",
-                  fontSize: 48,
-                  fontFamily: "Arial",
-                  color: "#000000",
-                  top: THUMBNAIL_HEIGHT / 2 + 230,
-                },
-              ],
-              logoUrl: "/barako.png",
-            };
-          } else if (tab.id === 3) {
-            // Thumbnail 3: Sunday WTA @ Punggol Billiards
-            initialContent = {
-              texts: [
-                {
-                  content: "Sunday WTA @ Punggol Billiards",
-                  fontSize: 100,
-                  fontFamily: "Arial",
-                  color: "#000000",
-                  fontWeight: "bold",
-                  stroke: "#FFFFFF",
-                  strokeWidth: 4,
-                  width: 994,
-                  top: THUMBNAIL_HEIGHT / 2 + 80,
-                },
-                {
-                  content: "9th November 2025 | 7:00PM",
-                  fontSize: 48,
-                  fontFamily: "Arial",
-                  color: "#000000",
-                  top: THUMBNAIL_HEIGHT / 2 + 230,
-                },
-              ],
-              logoUrl: "/barako.png",
-              logoTop: 30,
-              logoSizeMultiplier: 1.3,
             };
           } else if (tab.id === 4) {
             // Thumbnail 4: APA Monday League @ D' Skunks Lounge
@@ -327,6 +280,52 @@ export default function TabbedThumbnailEditor() {
               showArrow: false,
               youtubeLogoSizeMultiplier: 0.5, // Reduce by 2x (half size)
               youtubeLogoTop: 50, // Reduced by 20px (from 70 to 50)
+            };
+          } else if (tab.id === 10) {
+            // Tab 10: Friendly Double Match
+            initialContent = {
+              texts: [
+                {
+                  content: "Friendly Double Match",
+                  fontSize: 120,
+                  fontFamily: "Impact",
+                  color: "#FFFFFF",
+                  fontWeight: "bold",
+                  stroke: "#000000",
+                  strokeWidth: 5,
+                  top: THUMBNAIL_HEIGHT / 2,
+                },
+              ],
+              backgroundColor: "#4a3a6e", // Dark purple background
+            };
+          } else if (tab.id === 11) {
+            // Tab 11: Ring Game
+            initialContent = {
+              texts: [
+                {
+                  content: "RING GAMES",
+                  fontSize: 150,
+                  fontFamily: "Impact",
+                  color: "#FFD700", // Gold color
+                  fontWeight: "bold",
+                  stroke: "#000000",
+                  strokeWidth: 5,
+                  top: 150,
+                },
+                {
+                  content: "Presented by:",
+                  fontSize: 50,
+                  fontFamily: "Arial",
+                  color: "#FFFFFF",
+                  stroke: "#000000",
+                  strokeWidth: 2,
+                  top: 300,
+                },
+              ],
+              logoUrl: "/PSGB_LogoSQ.jpg",
+              logoTop: 380,
+              logoSizeMultiplier: 1.5,
+              backgroundColor: "#1A1A1A", // Dark charcoal background
             };
           }
 
